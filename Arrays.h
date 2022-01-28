@@ -3,6 +3,8 @@
 
 #include <stdio.h>
 
-size_t createArray(size_t dimensions);
+void *create1DArray(size_t arrSize, size_t elementSize);
+void *create2DArray(size_t arrSize[], size_t elementSize);
+void ***create3DArray(size_t arrSize[], size_t elementSize);
 
 #endif //CTESTPROJECT_ARRAYS_H
