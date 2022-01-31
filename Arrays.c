@@ -2,34 +2,40 @@
 #include <stdlib.h>
 #include "Arrays.h"
 
-void *create1DArray(size_t arrSize, size_t elementSize) {
-    void *returnArr = calloc(arrSize, elementSize);
 
-    if (returnArr == NULL) {
+struct Array1D create1DArray(size_t arrSize, size_t elementSize) {
+    struct Array1D array;
+    array.arraySize = arrSize;
+
+    array.arr = calloc(arrSize, elementSize);
+
+    if (array.arr == NULL) {
         perror("Something went wrong with Calloc!");
         exit(1);
     }
 
-    return calloc(arrSize, elementSize);
+    return array;
 }
 
-void *create2DArray(size_t arrSize[], size_t elementSize) { // Not working! To be fixed later! ~!!~
-    void **returnArr = calloc(arrSize[0], sizeof(void **));
+struct Array2D create2DArray(size_t arrSize[], size_t elementSize[]) {
+    struct Array2D array;
+    array.arr = calloc(arrSize[0], elementSize[0]);
+    array.arraySize = arrSize;
 
-    if (returnArr == NULL) {
+    if (array.arr == NULL) {
         perror("Something went wrong with Calloc!");
         exit(1);
     }
 
     for (int x = 0; x < arrSize[0]; x++) {
-        returnArr = calloc(arrSize[1], elementSize);
+        array.arr[x] = calloc(arrSize[1], elementSize[1]);
 
-        if (returnArr == NULL) {
+        if (array.arr[x] == NULL) {
             perror("Something went wrong with Calloc!");
             exit(1);
         }
     }
 
 
-    return returnArr;
+    return array;
 }
